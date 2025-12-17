@@ -18,7 +18,7 @@ const Slider = () => {
       <SwiperSlide>
         <Link to="/category/jerseys">
           <div
-            className="h-full w-full bg-cover bg-center"
+            className="w-full h-full"
             style={{
               backgroundImage:
                 "url(https://res.cloudinary.com/dkwh7oqpf/image/upload/v1765622326/Untitled-1_woqnis.png)",
@@ -31,7 +31,7 @@ const Slider = () => {
       <SwiperSlide>
         <Link to="/category/boots">
           <img
-            src="https://res.cloudinary.com/dkwh7oqpf/image/upload/v1765624984/Untitled-2_cao1yk.png"
+            src="https://www.futbolemotion.com/imagesbanners/xxl/puma_unleashed25_Q1.webp"
             className="w-full h-full object-cover"
             alt="Boots"
           />
@@ -42,7 +42,7 @@ const Slider = () => {
       <SwiperSlide>
         <Link to="/category/equipment">
           <img
-            src="https://res.cloudinary.com/dkwh7oqpf/image/upload/v1765622326/Untitled-1_woqnis.png"
+            src="https://static.nike.com/a/images/w_2880,h_1410,c_fill,f_auto/3ce86b0e-21b3-4b13-bbe4-198f221c564f/image.png"
             className="w-full h-full object-cover"
             alt="Equipment"
           />

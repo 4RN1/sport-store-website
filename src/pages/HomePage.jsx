@@ -5,8 +5,11 @@ import { FiGift } from "react-icons/fi";
 import { MdOutlinePayment } from "react-icons/md";
 import { FaFacebookF } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
-
 import { FaLocationDot } from "react-icons/fa6";
+import { interestingProducts } from "@/test-data/data";
+import { Link } from "react-router-dom";
+import { IoMdAddCircle } from "react-icons/io";
+
 const Home = () => {
   return (
     <>
@@ -14,15 +17,76 @@ const Home = () => {
         <Slider />
         <CompanylogoLoop />
 
+        {/* SECTION TITLE */}
         <div>
-          <h1 className="text-center sm:text-lg md:text-2xl lg:text-3xl  font-bold  my-10">
+          <h1 className="text-center text-lg md:text-2xl lg:text-3xl font-bold my-10">
             შესაძლოა დაგაინტერესოთ
           </h1>
+          <div className="w-full overflow-x-auto bg-gray-300 py-6">
+            <div
+              className="flex gap-6 px-4 min-w-max [&::-webkit-scrollbar]:w-2
+                        [&::-webkit-scrollbar-track]:rounded-full
+                        [&::-webkit-scrollbar-track]:bg-gray-100
+                        [&::-webkit-scrollbar-thumb]:rounded-full
+                        [&::-webkit-scrollbar-thumb]:bg-gray-300
+                        dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+                        dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+            >
+              {interestingProducts.map((item) => (
+                <div
+                  key={item.id}
+                  className="smin-w-[260px] w-full max-w-75 shadow-lg rounded-xl border relative bg-white flex flex-col justify-between"
+                >
+                  <img
+                    src={item.imgUrl}
+                    alt={item.name}
+                    className="w-full rounded-t-xl h-65"
+                  />
 
-          {/* პროდუქტები აქ */}
+                  <div className="p-4">
+                    <h1 className="font-bold text-sm mb-1">{item.name}</h1>
+
+                    <p className="text-xs">
+                      ზომები:
+                      <span className="font-extralight">
+                        {" "}
+                        {item.sizes.join(", ")}
+                      </span>
+                    </p>
+
+                    <span
+                      className={`text-sm font-medium ${
+                        item.inStock ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {item.inStock ? "მარაგშია" : "არ არის მარაგში"}
+                    </span>
+
+                    <div className="flex items-center justify-between mt-3">
+                      <p className="font-bold text-lg">
+                        {item.price.toFixed(2)}₾
+                      </p>
+
+                      <Link
+                        to="/product/"
+                        className="bg-[#e4e4e4] px-3 py-1 rounded-full text-sm hover:opacity-80 active:opacity-80"
+                      >
+                        სრულად
+                      </Link>
+                    </div>
+
+                    <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer">
+                      <IoMdAddCircle size={36} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className=" sm:grid  grid-cols-1 md:grid-cols-2 md:mx-25 lg:grid-cols-3  my-25">
+        {/* SERVICES */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 my-25 md:mx-25">
           <div className="flex flex-col items-center p-5">
             <TbTruckDelivery size={100} />
             <h3 className="text-xl font-bold my-5">მიტანის სერვისი</h3>
@@ -32,18 +96,22 @@ const Home = () => {
               გადასახადი
             </p>
           </div>
-          <div className="flex flex-col items-center border-l border-r p-5">
+
+          <div className="flex flex-col items-center p-5 border-y lg:border-y-0 lg:border-x">
             <MdOutlinePayment size={100} />
-            <h3 className="text-xl font-bold my-5">
+            <h3 className="text-xl font-bold my-5 text-center">
               Visa და Mastercard-ით გადახდები
             </h3>
             <p className="text-md text-center">
               უსაფრთხო ონლაინ გადახდა Visa და Mastercard საბანკო ბარათებით
             </p>
           </div>
-          <div className="flex  flex-col items-center p-5">
+
+          <div className="flex flex-col items-center p-5">
             <FiGift size={100} />
-            <h3 className="text-xl font-bold my-5">სასაჩუქრე ვაუჩერები</h3>
+            <h3 className="text-xl font-bold my-5 text-center">
+              სასაჩუქრე ვაუჩერები
+            </h3>
             <p className="text-md text-center">
               აჩუქე არჩევანი სასაჩუქრე ვაუჩერით — გამოიყენე ონლაინ შეკვეთის დროს
               და გადაიხადე მარტივად
@@ -51,48 +119,50 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 w-7xl mx-auto">
+        {/* CONTACT */}
+        <div className="grid grid-cols-1 md:grid-cols-2 mx-2 my-5 gap-8">
           <div className="flex flex-col gap-5">
-            
             <div className="flex flex-col gap-2 text-center">
               <h1 className="text-xl font-bold">კონტაქტი</h1>
-              <p >
-                <a
-                  href="mailto:anriskr14@gmail.com"
-                  className="flex items-center gap-1 text-lg justify-center"
-                >
-                  <FaFacebookF /> anriskr14@gmail.com
-                </a>
-              </p>
-              <p>
-                <a
-                  href="tel:+555 123 456 789"
-                  className="flex items-center gap-1 text-lg justify-center"
-                >
-                  <BsFillTelephoneFill />
-                  555 123 456 789
-                </a>
-              </p>
-              <p className="flex items-center gap-1 text-lg justify-center">
+
+              <a
+                href="mailto:anriskr14@gmail.com"
+                className="flex items-center justify-center gap-2 text-sm lg:text-lg"
+              >
+                <FaFacebookF />
+                anriskr14@gmail.com
+              </a>
+
+              <a
+                href="tel:+555123456789"
+                className="flex items-center justify-center gap-2 text-sm lg:text-lg"
+              >
+                <BsFillTelephoneFill />
+                555 123 456 789
+              </a>
+
+              <p className="flex items-center justify-center gap-2 text-sm lg:text-lg">
                 <FaLocationDot />
                 თბილისი, ალექსანდრე გრიბოედოვის ქუჩა
               </p>
             </div>
-            
+
             <div className="text-center mb-10">
               <h1 className="text-xl font-bold">სამუშაო საათები</h1>
-              <p className="text-lg my-2">ორშაბათი - პარასკევი : 09:00 - 21:00</p>
-              <p className="text-lg"> შაბათი : 10:00 - 17:00</p>
+              <p className="text-sm lg:text-xl my-2">
+                ორშაბათი - პარასკევი : 09:00 - 21:00
+              </p>
+              <p className="text-sm lg:text-xl">შაბათი : 10:00 - 17:00</p>
             </div>
           </div>
-          <div className="w-full h-65.5">
+
+          <div className="w-full h-65 md:h-full">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.2675559292366!2d44.78908267648321!3d41.7026276763818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440d16ce18e61b%3A0xb496bc458aa122a0!2sSEAGROUP%20TECH!5e1!3m2!1ska!2sge!4v1765654197212!5m2!1ska!2sge"
-              width="100%"
-              height="100%"
-              style={{ border: 0 } }
+              className="w-full h-full rounded-lg"
+              style={{ border: 0 }}
               allowFullScreen
-              loading="lazy"
+              loading="eager"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>

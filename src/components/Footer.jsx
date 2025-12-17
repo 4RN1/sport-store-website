@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 const Footer = () => {
   return (
     <footer className="bg-neutral-900 text-gray-300">
@@ -21,11 +24,11 @@ const Footer = () => {
             მაღაზია
           </h3>
           <ul className="space-y-2 text-sm">
-            <li className="hover:text-white cursor-pointer">ყველა კატეგორია</li>
-            <li className="hover:text-white cursor-pointer">ფორმები</li>
-            <li className="hover:text-white cursor-pointer">ფორმები</li>
-            <li className="hover:text-white cursor-pointer">ბუცები</li>
-            <li className="hover:text-white cursor-pointer">სპორტული ინვენტარი</li>
+            <li><Link to = "/" className="hover:text-white cursor-pointer">მთავარი</Link></li>
+            <li><Link to = "/category" className="hover:text-white cursor-pointer">ყველა კატეგორია</Link></li>
+            <li><Link to = "/category/jerseys" className="hover:text-white cursor-pointer">ფორმები</Link></li>
+            <li><Link to = "/category/shoes" className="hover:text-white cursor-pointer">ფეხბურთის ფეხსაცმელები</Link></li>
+            <li><Link to = "/category/equipment" className="hover:text-white cursor-pointer">სპორტული ინვენტარი</Link></li>
           </ul>
         </div>
 
@@ -35,11 +38,11 @@ const Footer = () => {
             მხარდაჭერა
           </h3>
           <ul className="space-y-2 text-sm">
-            <li className="hover:text-white cursor-pointer">დაგვიკავშირდით</li>
-            <li className="hover:text-white cursor-pointer">მიწოდება და დაბრუნება</li>
-            <li className="hover:text-white cursor-pointer">ხშირად დასმული კითხვები</li>
-            <li className="hover:text-white cursor-pointer">კონფიდენციალურობის პოლიტიკა</li>
-            <li className="hover:text-white cursor-pointer">წესები და პირობები</li>
+            <li><Link to = "/info#contact" className="hover:text-white cursor-pointer">დაგვიკავშირდით</Link></li>
+            <li><Link to = "/info#shipping" className="hover:text-white cursor-pointer">მიწოდება და დაბრუნება</Link></li>
+            <li><Link to = "/info#faq" className="hover:text-white cursor-pointer">ხშირად დასმული კითხვები</Link></li>
+            <li><Link to = "/info#privacy" className="hover:text-white cursor-pointer">კონფიდენციალურობის პოლიტიკა</Link></li>
+            <li><Link to = "/info#terms" className="hover:text-white cursor-pointer">წესები და პირობები</Link></li>
           </ul>
         </div>
 

@@ -2,6 +2,17 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
+import AllCategory from "./pages/AllCategoryPage";
+import JerseyPage from "./pages/JerseyPage";
+import EquipmentPage from "./pages/EquipmentPage";
+import ShoesPage from "./pages/ShoesPage";
+import InfoPage from "./pages/InfoPage";
+import Registration from "./pages/Registration";
+import LoginPage from "./pages/LoginPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+
+
+
 
 
 function App() {
@@ -10,11 +21,15 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path = "/" element = {<Home/>}></Route>
-      <Route path = "/category" element = {<Home/>}></Route>
-      <Route path = "/category/jersey/:id" element = {<Home/>}></Route>
-      <Route path = "/category/boots/:id" element = {<Home/>}></Route>
-      <Route path = "/category/equipment/:id" element = {<Home/>}></Route>
-      <Route path = "/" element = {<Home/>}></Route>
+      <Route path = "/category" element = {<AllCategory/>}></Route>
+      <Route path = "/category/jerseys" element = {<JerseyPage/>}></Route>
+      <Route path = "/category/shoes" element = {<ShoesPage/>}></Route>
+      <Route path = "/category/equipment" element = {<EquipmentPage/>}></Route>
+      <Route path = "/product/:prodcutid" element = {<ProductDetailPage/>}></Route>
+      <Route path = "/info" element = {<InfoPage/>}></Route>
+      <Route path = "/registration" element = {<Registration/>}></Route>
+      <Route path = "/login" element = {<LoginPage/>}></Route>
+      
 
     </Routes>
     <Footer/>

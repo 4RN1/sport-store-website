@@ -1,21 +1,18 @@
-import { jerseysData, socksData, sportswearData } from "@/test-data/data";
+import { runningShoesData, shoesTestData } from "@/test-data/data";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-
-const JerseyPage = () => {
-
-const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
+const ShoesPage = () => {
 
 
+const shoes = [...shoesTestData , ...runningShoesData]
 
   return (
-    
     <>
       {/* TITLE */}
       <div className="w-full h-24 flex items-center justify-center ">
         <h1 className="text-xl md:text-2xl font-bold">
-          სპორტული ტანსაცმელები
+          ფეხბურთის ფეხსაცმელები
         </h1>
       </div>
 
@@ -29,16 +26,16 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
           </div>
 
           <ul className="flex flex-col text-md font-medium p-2">
-            
             <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
-              ფორმები
+              ბუცები
             </li>
-             <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
-              სპორტული ტანსაცმელი
+            <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+              შიპოვკები
             </li>
-              <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
-              წინდები/გეტრები
+            <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+              სარბენი ფეხსაცმელები
             </li>
+
           </ul>
         </div>
 
@@ -46,9 +43,28 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
         <div className="flex flex-col flex-1">
 
           {/* FILTER BAR */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8 ">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
             
-          
+            <div className="flex flex-col items-center">
+              <p className="mb-1 font-black text-sm">ბრენდი</p>
+              <select className="w-full px-2 py-1.5 border rounded">
+                <option value="nike">Nike</option>
+                <option value="adidas">Adidas</option>
+                <option value="puma">Puma</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <p className="mb-1 font-black text-sm">ზომა</p>
+              <select className="w-full px-2 py-1.5 border rounded">
+                <option value="All">ყველა</option>
+                <option value="small">36-38</option>
+                <option value="normal">39-41</option>
+                <option value="big">42-44</option>
+                <option value="extra-big">45-46</option>
+
+              </select>
+            </div>
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">მარაგშია</p>
@@ -70,7 +86,7 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
 
           {/* PRODUCTS GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center">
-            {clothesProducts.map((item) => (
+            {shoes.map((item) => (
               <div
                 key={item.id}
                 className="shadow-lg rounded-xl border relative bg-white w-full max-w-80"
@@ -119,7 +135,6 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
               </div>
             ))}
           </div>
-          
 
         </div>
       </div>
@@ -127,7 +142,7 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
   );
 };
 
-export default JerseyPage;
+export default ShoesPage;
 
 
 
