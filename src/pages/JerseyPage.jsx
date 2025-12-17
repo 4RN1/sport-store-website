@@ -105,7 +105,7 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
                     </p>
 
                     <Link
-                      to="/product/"
+                      to={`/product/${item.id}`}
                       className="bg-[#e4e4e4] px-3 py-1 rounded-full text-sm hover:opacity-80 active:opacity-80"
                     >
                       სრულად

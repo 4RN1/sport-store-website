@@ -1,14 +1,18 @@
+// components
 import CompanylogoLoop from "@/components/CompanylogoLoop";
 import Slider from "../components/Slider";
+// icons
 import { TbTruckDelivery } from "react-icons/tb";
 import { FiGift } from "react-icons/fi";
 import { MdOutlinePayment } from "react-icons/md";
 import { FaFacebookF } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
+import { IoMdAddCircle } from "react-icons/io";
+// Test Data
 import { interestingProducts } from "@/test-data/data";
 import { Link } from "react-router-dom";
-import { IoMdAddCircle } from "react-icons/io";
+
 
 const Home = () => {
   return (
@@ -68,7 +72,7 @@ const Home = () => {
                       </p>
 
                       <Link
-                        to="/product/"
+                        to={`/product/${item.id}`}
                         className="bg-[#e4e4e4] px-3 py-1 rounded-full text-sm hover:opacity-80 active:opacity-80"
                       >
                         სრულად
