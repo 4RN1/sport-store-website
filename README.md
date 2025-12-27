@@ -9,7 +9,7 @@ This project is a **React-based sports store** with the following features:
 * Category pages: All Products, Sportswear, Shoes, Equipment.
 * Product details page with **PayPal sandbox payment** for each product.
 * PayPal button is **disabled if the product is out of stock**.
-* Prices are displayed in GEL, payments are processed in USD via PayPal sandbox.
+* Prices are displayed in USD, payments are processed in USD via PayPal sandbox.
 
 ---
 
@@ -22,8 +22,6 @@ This project is a **React-based sports store** with the following features:
 * Single product checkout.
 * Stock availability check disables payment if the product is not in stock.
 * Redirect to a success page with product and payer details after payment.
-* GEL → USD conversion for PayPal payments.
-
 ---
 
 ## Installation
@@ -74,14 +72,13 @@ npm start
 2. Navigate through the pages: Home, Categories, Product Details.
 3. On the product details page, click the PayPal button to perform a **sandbox payment**.
 4. If the product is out of stock, the PayPal button will be disabled.
-5. After successful payment, you will be redirected to a **Thank You page** showing product and payer details.
+5. After successful payment, you will be redirected to a **Success** showing product and payer details.
 
 ---
 
 ## Notes
 
 * All payments are in **sandbox mode**; no real money is used.
-* Prices are shown in GEL for display purposes but are converted to USD for PayPal.
 * Login and registration pages are **visual only**; no authentication is implemented.
 * Can be extended later with a real backend for authentication and order management.
 
