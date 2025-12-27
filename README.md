@@ -83,6 +83,15 @@ npm start
 * Can be extended later with a real backend for authentication and order management.
 
 ---
+## PayPal Sandbox Credentials (For Testing Only)
+
+<strong>Note: These credentials are for testing purposes only. Do not use them in production.</strong>
+
+* Email: testpaypalpay2222@gmail.com
+* Password: testtest123
+
+ <strong>⚠️ Only use these credentials in the PayPal Sandbox environment. Real payments should never use these credentials.</strong>
+--- 
 
 ## License
 
