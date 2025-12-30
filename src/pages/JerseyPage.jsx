@@ -6,6 +6,7 @@ import { useCart } from "@/context/cartContext";
 
 const JerseyPage = () => {
   const { addToCart } = useCart();
+
   const [activeCategory, setActiveCategory] = useState(null);
   const [displaySorted, setDisplaySorted] = useState("none");
   const [inStock, setInStock] = useState("all");
@@ -189,7 +190,7 @@ const JerseyPage = () => {
                     onClick={() => addToCart(item)}
                     disabled={!item.inStock}
                   >
-                    <IoMdAddCircle size={36} />
+                    <IoMdAddCircle size={36} className="text-green-500" />
                   </button>
                 </div>
               </div>

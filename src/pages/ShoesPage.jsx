@@ -2,77 +2,71 @@ import { shoes } from "@/test-data/data";
 import { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-
+import { useCart } from "@/context/cartContext";
 
 const ShoesPage = () => {
+  const { addToCart } = useCart();
 
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [displaySorted, setDisplaySorted] = useState("none");
+  const [inStock, setInStock] = useState("all");
+  const [selectedSize, setSelectedsize] = useState("all");
+  const [selectedBrand, setSelectedBrand] = useState("all");
 
-const [activeCategory, setActiveCategory] = useState(null)
-const [displaySorted , setDisplaySorted] = useState("none")
-const [inStock , setInStock] = useState("all")
-const [selectedSize, setSelectedsize] = useState("all")
-const [selectedBrand, setSelectedBrand] = useState("all")
+  const getProcessedProducts = () => {
+    let list = activeCategory
+      ? shoes.filter((f) => f.category === activeCategory)
+      : [...shoes];
 
- const getProcessedProducts = () => {
-  let list = activeCategory ? shoes.filter( f => f.category === activeCategory) : [...shoes];
+    if (selectedBrand !== "all") {
+      list = list.filter((item) => {
+        return item.brand.toLowerCase() === selectedBrand.toLowerCase();
+      });
+    }
 
+    if (selectedSize !== "all") {
+      list = list.filter((item) => {
+        if (selectedSize === "small") {
+          return item.sizes.some((s) => s >= 36 && s <= 38);
+        }
+        if (selectedSize === "normal") {
+          return item.sizes.some((s) => s >= 39 && s <= 41);
+        }
+        if (selectedSize === "large") {
+          return item.sizes.some((s) => s >= 42 && s <= 44);
+        }
+        if (selectedSize === "extraLarge") {
+          return item.sizes.some((s) => s >= 45 && s <= 46);
+        }
+        return true;
+      });
+    }
 
-  if (selectedBrand !== "all") {
-    list = list.filter(item => {
-     return item.brand.toLowerCase() === selectedBrand.toLowerCase()
-    })
-  }
+    if (inStock === "yes") {
+      list = list.filter((item) => item.inStock === true);
+    } else if (inStock === "no") {
+      list = list.filter((item) => item.inStock === false);
+    }
 
+    if (displaySorted === "lowToHigh") {
+      return list.sort((a, b) => a.price - b.price);
+    } else if (displaySorted === "highToLow") {
+      return list.sort((a, b) => b.price - a.price);
+    }
 
+    return list;
+  };
 
+  const finalProducts = getProcessedProducts();
 
-  if (selectedSize !== "all") {
-    list = list.filter(item => {
-      if (selectedSize === "small") {
-        return item.sizes.some(s => s >= 36 && s <= 38)
-      }
-      if (selectedSize === "normal") {
-        return item.sizes.some(s => s >= 39 && s <= 41)
-      }
-      if (selectedSize === "large") {
-        return item.sizes.some(s => s >= 42 && s <= 44)
-      }
-      if (selectedSize === "extraLarge") {
-        return item.sizes.some(s => s >= 45 && s <= 46)
-      }
-      return true
-    })
-  }
- 
+  const filteredByCategory = (category) => {
+    setActiveCategory(category);
+  };
 
-  if (inStock === "yes") {
-    list = list.filter(item => item.inStock === true)
-  } else if (inStock === "no") {
-   list = list.filter(item => item.inStock === false)
-  } 
-
-   if (displaySorted === "lowToHigh") {
-    return list.sort((a , b) => a.price - b.price)
-  } else if (displaySorted === "highToLow") {
-    return list.sort((a, b) => b.price - a.price)
-  } 
-
-
-  return list
-}
-
-const finalProducts = getProcessedProducts()
-
-
-const filteredByCategory = (category) => {
-  setActiveCategory(category)
-}
-
-const handleStock = (e) => setInStock(e.target.value)
-const handleSort = (e) => setDisplaySorted(e.target.value)
-const handleSize = (e) => setSelectedsize(e.target.value)
-const handleBrand = (e) => setSelectedBrand(e.target.value)
-
+  const handleStock = (e) => setInStock(e.target.value);
+  const handleSort = (e) => setDisplaySorted(e.target.value);
+  const handleSize = (e) => setSelectedsize(e.target.value);
+  const handleBrand = (e) => setSelectedBrand(e.target.value);
 
   return (
     <>
@@ -85,7 +79,6 @@ const handleBrand = (e) => setSelectedBrand(e.target.value)
 
       {/* PAGE LAYOUT */}
       <div className="flex flex-col lg:flex-row gap-6 px-4 lg:px-10 my-10 min-h-screen">
-        
         {/* FILTER SIDEBAR */}
         <div className="bg-[#f1f1f1] rounded h-fit w-full lg:w-72">
           <div className="border-b border-[#aaaaaa6c] font-bold px-3 py-2">
@@ -93,25 +86,31 @@ const handleBrand = (e) => setSelectedBrand(e.target.value)
           </div>
 
           <ul className="flex flex-col text-md font-medium p-2">
-            <li onClick={() =>  filteredByCategory("საფეხბურთო ფეხსაცმელები")  } className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+            <li
+              onClick={() => filteredByCategory("საფეხბურთო ფეხსაცმელები")}
+              className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]"
+            >
               ბუცები/შიპოვკები
             </li>
-            <li onClick={() =>  filteredByCategory("სარბენი ფეხსაცმელები")}  className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+            <li
+              onClick={() => filteredByCategory("სარბენი ფეხსაცმელები")}
+              className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]"
+            >
               სარბენი ფეხსაცმელები
             </li>
-
           </ul>
         </div>
 
         {/* CONTENT */}
         <div className="flex flex-col flex-1">
-
           {/* FILTER BAR */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-            
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">ბრენდი</p>
-              <select className="w-full px-2 py-1.5 border rounded" onChange={handleBrand}>
+              <select
+                className="w-full px-2 py-1.5 border rounded"
+                onChange={handleBrand}
+              >
                 <option value="all">ყველა</option>
 
                 <option value="nike">Nike</option>
@@ -122,19 +121,24 @@ const handleBrand = (e) => setSelectedBrand(e.target.value)
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">ზომა</p>
-              <select className="w-full px-2 py-1.5 border rounded" onChange={handleSize}>
+              <select
+                className="w-full px-2 py-1.5 border rounded"
+                onChange={handleSize}
+              >
                 <option value="All">ყველა</option>
                 <option value="small">36-38</option>
                 <option value="normal">39-41</option>
                 <option value="big">42-44</option>
                 <option value="extra-big">45-46</option>
-
               </select>
             </div>
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">მარაგშია</p>
-              <select className="w-full px-2 py-1.5 border rounded" onChange={handleStock}>
+              <select
+                className="w-full px-2 py-1.5 border rounded"
+                onChange={handleStock}
+              >
                 <option value="all">ყველა</option>
                 <option value="yes">კი</option>
                 <option value="no">არა</option>
@@ -143,13 +147,15 @@ const handleBrand = (e) => setSelectedBrand(e.target.value)
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">დალაგება</p>
-              <select className="w-full px-2 py-1.5 border rounded" onChange={handleSort}>
+              <select
+                className="w-full px-2 py-1.5 border rounded"
+                onChange={handleSort}
+              >
                 <option value="all">None</option>
                 <option value="lowToHigh">ზრდადობით</option>
                 <option value="highToLow">კლებადობით</option>
               </select>
             </div>
-
           </div>
 
           {/* PRODUCTS GRID */}
@@ -171,7 +177,8 @@ const handleBrand = (e) => setSelectedBrand(e.target.value)
                   <p className="text-sm">
                     ზომები:
                     <span className="font-extralight">
-                      {" "}{item.sizes.join(", ")}
+                      {" "}
+                      {item.sizes.join(", ")}
                     </span>
                   </p>
 
@@ -196,14 +203,17 @@ const handleBrand = (e) => setSelectedBrand(e.target.value)
                     </Link>
                   </div>
 
-                  <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer">
-                    <IoMdAddCircle size={36} />
+                  <button
+                    className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer"
+                    onClick={() => addToCart(item)}
+                    disabled={!item.inStock}
+                  >
+                    <IoMdAddCircle size={36} className="text-green-500" />
                   </button>
                 </div>
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </>
@@ -211,6 +221,3 @@ const handleBrand = (e) => setSelectedBrand(e.target.value)
 };
 
 export default ShoesPage;
-
-
-

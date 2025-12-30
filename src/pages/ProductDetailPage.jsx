@@ -3,7 +3,14 @@ import { allProduct } from "@/test-data/data";
 import { FaBasketShopping } from "react-icons/fa6";
 import { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { useCart } from "@/context/cartContext";
+
+
+
 const ProductDetailPage = () => {
+  const { addToCart } = useCart();
+
+
   const [active, setactive] = useState("description");
 
   const { id } = useParams();
@@ -80,14 +87,17 @@ const ProductDetailPage = () => {
             />
           </div>
 
-          <button disabled={!product.inStock} className={` py-3 bg-black text-white rounded-xl flex items-center justify-center gap-1 cursor-pointer ${!product.inStock ? "opacity-20 " : "hover:opacity-85"} `}>
+          <button disabled={!product.inStock} className={` py-3 bg-black text-white rounded-xl flex items-center justify-center gap-1 cursor-pointer ${!product.inStock ? "opacity-20 " : "hover:opacity-85"} `}
+          onClick={() => addToCart(product)}
+          >
             < FaBasketShopping/>
             კალათაში დამატება
           </button>
           
             <PayPalButtons
-                    style={{ layout: "vertical" }}
+                    style={{ layout: "vertical"}}
                     disabled={!product.inStock}
+                    className="z-10"
                     
                     createOrder={(data, actions) => {
                       return actions.order.create({

@@ -3,6 +3,7 @@ import { useState } from "react";
 // import { useMemo } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useCart } from "@/context/cartContext";
 
 const AllCategory = () => {
 
@@ -25,6 +26,7 @@ const [activeCategory, setActiveCategory] = useState(null)
 const [displaySorted , setDisplaySorted] = useState("none")
 const [inStock , setInStock] = useState("all")
 const [selectedSize, setSelectedsize] = useState("all")
+const { addToCart } = useCart();
 
  const getProcessedProducts = () => {
   let list = activeCategory ? allProduct.filter( f => f.category === activeCategory) : [...allProduct];
@@ -212,8 +214,10 @@ const handleSize = (e) => setSelectedsize(e.target.value)
                     </Link>
                   </div>
 
-                  <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer">
-                    <IoMdAddCircle size={36} />
+                  <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer" 
+                   onClick={() => addToCart(item)}
+                    disabled={!item.inStock}>
+                    <IoMdAddCircle size={36} className="text-green-500"/>
                   </button>
                 </div>
               </div>

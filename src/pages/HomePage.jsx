@@ -14,8 +14,11 @@ import { interestingProducts } from "@/test-data/data";
 import { Link } from "react-router-dom";
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useCart } from "@/context/cartContext";
 
 const Home = () => {
+  const { addToCart } = useCart();
+
   return (
     <>
       <main>
@@ -80,8 +83,12 @@ const Home = () => {
                       </Link>
                     </div>
 
-                    <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer">
-                      <IoMdAddCircle size={36} />
+                    <button
+                      className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer"
+                      onClick={() => addToCart(item)}
+                      disabled={!item.inStock}
+                    >
+                      <IoMdAddCircle size={36} className="text-green-500" />
                     </button>
                   </div>
                 </div>
@@ -93,7 +100,10 @@ const Home = () => {
         {/* SERVICES */}
         <div className="grid grid-cols-1 lg:grid-cols-3 my-25 md:mx-25">
           <div className="flex flex-col items-center my-4">
-            <iframe src="https://lottie.host/embed/990f25bc-cee3-434c-aa57-ac3a63f8ea58/F9IgPjbCxX.json" className="h-60"></iframe>
+            <iframe
+              src="https://lottie.host/embed/990f25bc-cee3-434c-aa57-ac3a63f8ea58/F9IgPjbCxX.json"
+              className="h-60"
+            ></iframe>
             <h3 className="text-xl font-bold my-5">მიტანის სერვისი</h3>
             <p className="text-md text-center">
               სწრაფი და უსაფრთხო მიწოდება საქართველოს მასშტაბით — თბილისში

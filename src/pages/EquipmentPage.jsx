@@ -2,8 +2,10 @@ import { equipmentProducts } from "@/test-data/data";
 import { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useCart } from "@/context/cartContext";
 
 const EquipmentPage = () => {
+  const { addToCart } = useCart();
 
 
 const [activeCategory, setActiveCategory] = useState(null)
@@ -149,8 +151,11 @@ const handleSort = (e) => setDisplaySorted(e.target.value)
                     </Link>
                   </div>
 
-                  <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer">
-                    <IoMdAddCircle size={36} />
+                  <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer" 
+                    onClick={() => addToCart(item)}
+                    disabled={!item.inStock}
+                  >
+                    <IoMdAddCircle size={36} className="text-green-500"/>
                   </button>
                 </div>
               </div>
